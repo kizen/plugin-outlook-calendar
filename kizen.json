@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
-  "release_branches": ["KZN-14274-Calendar-Plugin-for-Outlook"],
+  "release_branches": ["main"],
   "release_environments": ["integration"],
   "entry": "src/",
   "engine": "1.0.0",

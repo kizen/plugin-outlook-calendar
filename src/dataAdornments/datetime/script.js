@@ -128,7 +128,7 @@ const eventDetails = buildEventDetails(record, object, this.args.activityId);
 
 const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate);
 
-const base64ICS = btoa(unescape(encodeURIComponent(icsContent)));
+const base64ICS = utf8ToBase64(icsContent);
 const dataUrl = `data:text/calendar;base64,${base64ICS}`;
 
 this.openWindow(dataUrl);

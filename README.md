@@ -1,3 +1,5 @@
-## Kizen Plugin Template
+## Microsoft Outlook Calendar Plugin
 
-This is a template for creating Kizen plugins. Modify or delete areas as needed.
+This plugin adds an Outlook Calendar integration to Kizen's App Marketplace.
+For any date or datetime field, users will see a data adornment (a calendar icon).
+Clicking the icon downloads a .ics file containing the event, which can be imported into Outlook Calendar.

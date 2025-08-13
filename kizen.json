@@ -1,9 +1,9 @@
 {
-  "name": "Plugin Template",
+  "name": "Microsoft Outlook Calendar Plugin",
   "version": "1.0.0",
-  "api_name": "plugin_template",
-  "description": "A template Kizen plugin. Use this to start building your own. Be sure to change the name and internal name.",
-  "release_branches": ["your-release-branch"],
+  "api_name": "outlook_calendar",
+  "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
+  "release_branches": ["main"],
   "release_environments": ["dev"],
   "entry": "src/",
   "engine": "1.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "Microsoft Outlook Calendar",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
   "release_branches": ["main"],

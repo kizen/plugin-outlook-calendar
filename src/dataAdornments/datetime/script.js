@@ -1,3 +1,11 @@
+function utf8ToBase64(str) {
+  return btoa(
+    Array.from(new TextEncoder().encode(str))
+      .map((b) => String.fromCharCode(b))
+      .join("")
+  );
+}
+
 const toTimeRange = (input, isAllDay = false, durationInMinutes = 30) => {
   const parseDateInput = () => {
     if (typeof input === "string") return new Date(input);

@@ -37,8 +37,8 @@
           "access_type": "offline",
           "prompt": "consent"
         },
-        "success_redirect_path": "oauth/success",
-        "error_redirect_path": "oauth/error"
+        "success_redirect_path": "/oauth/success",
+        "error_redirect_path": "/oauth/error"
       }
     }
   ]

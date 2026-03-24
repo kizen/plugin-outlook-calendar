@@ -22,7 +22,7 @@
       "display_name": "Outlook Calendar",
       "auth_type": "oauth",
       "auth_level": "user",
-      "required_entitlements": null,
+      "required_entitlement": null,
       "base_service_url": "https://graph.microsoft.com/v1.0",
       "auth_credentials": {
         "client_id": "693af3db-dd65-4049-aa3b-298412019e4a",

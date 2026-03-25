@@ -1,6 +1,6 @@
 {
   "name": "Microsoft Outlook Calendar Plugin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
   "release_branches": ["KZN-16244-outlook-calendar-enhanced-integration"],
@@ -33,6 +33,7 @@
         "content_type": "application/json",
         "token_field_name": "access_token",
         "default_token_expiry": 3600,
+        "payload": { "grant_type": "authorization_code" },
         "authorize_params": {
           "access_type": "offline",
           "prompt": "consent"

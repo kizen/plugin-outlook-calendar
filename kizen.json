@@ -37,8 +37,8 @@
           "access_type": "offline",
           "prompt": "consent"
         },
-        "success_redirect_path": "/oauth/success",
-        "error_redirect_path": "/oauth/error"
+        "success_redirect_path": "https://integration.kizen.dev/api/external-integrations/oauth/callback",
+        "error_redirect_path": "https://integration.kizen.dev/api/external-integrations/oauth/callback"
       }
     }
   ]

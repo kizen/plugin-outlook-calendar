@@ -1,3 +1,4 @@
+this.preserve = true;
 this.console.log("Fetching calendars for user");
 
 const allCalendarsEnabled = this.userConfig.enableAllCalendars ?? true; // Default to true

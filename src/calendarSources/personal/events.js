@@ -1,3 +1,4 @@
+this.preserve = true;
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
 this.console.log("Fetching events for calendar:", calendar_id, "from", range_start, "to", range_end);
@@ -31,12 +32,12 @@ const [data, errors] = await this.getWithErrors(
     )}&endDateTime=${encodeURIComponent(range_end)}`,
   ),
 );
-this.console.log("Fetched events:", data.items);
+this.console.log("Fetched events:", data.value);
 if (errors) {
   return [];
 }
 
-return data.items
+return data.value
   .filter((event) => {
     return ["free", "workingElsewhere"].includes(event.showAs);
   })

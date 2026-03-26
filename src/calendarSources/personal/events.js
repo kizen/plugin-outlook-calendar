@@ -26,7 +26,7 @@ const parseDateBounds = (event) => {
 const [data, errors] = await this.getWithErrors(
   this.getServiceUrl(
     "personal",
-    `me/calendars/${encodeURIComponent(calendar_id)}/calendarView?startDateTime=${encodeURIComponent(
+    `/v1.0/me/calendars/${encodeURIComponent(calendar_id)}/calendarView?startDateTime=${encodeURIComponent(
       range_start,
     )}&endDateTime=${encodeURIComponent(range_end)}`,
   ),

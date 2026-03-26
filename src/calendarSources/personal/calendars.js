@@ -5,7 +5,7 @@ this.console.log("All calendars enabled:", allCalendarsEnabled);
 const calendarFilterList = this.userConfig.enabledUserCalendars?.map((calendar) => calendar.value) || [];
 this.console.log("Enabled user calendars:", calendarFilterList);
 
-const [data, errors] = await this.getWithErrors(this.getServiceUrl("personal", "/me/calendars"));
+const [data, errors] = await this.getWithErrors(this.getServiceUrl("personal", "/v1.0/me/calendars"));
 
 if (errors) {
   return [];

@@ -11,7 +11,7 @@ if (errors) {
   return [];
 }
 
-this.console.log("Fetched calendars:", data.items);
+this.console.log("Fetched calendars:", data);
 
 return data.items
   .map((calendar) => ({

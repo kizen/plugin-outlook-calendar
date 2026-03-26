@@ -1,5 +1,6 @@
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
+this.console.log("Fetching events for calendar:", calendar_id, "from", range_start, "to", range_end);
 // An all-day event from google will have a start and end date, but not
 // a start or end datetime.
 // const isAllDayEvent = (event) => {
@@ -30,7 +31,7 @@ const [data, errors] = await this.getWithErrors(
     )}&endDateTime=${encodeURIComponent(range_end)}`,
   ),
 );
-
+this.console.log("Fetched events:", data.items);
 if (errors) {
   return [];
 }

@@ -2,23 +2,28 @@ this.preserve = true;
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
 this.console.log("Fetching events for calendar:", calendar_id, "from", range_start, "to", range_end);
-// An all-day event from google will have a start and end date, but not
-// a start or end datetime.
-// const isAllDayEvent = (event) => {
-//   return Boolean(!event.start.dateTime && !event.end.dateTime && event.start.date && event.end.date);
-// };
+// Outlook timed events provide dateTime + timeZone.
+// If dateTime has no explicit offset and the timezone is UTC, append Z before parsing.
+const hasOffsetOrZulu = (value = "") => /[zZ]$|[+-]\d{2}:\d{2}$/.test(value);
 
-// The date bounds need to be parsed in the user's timezone if they are an all-day event,
-// otherwise we get a full timestamp that can be parsed as-is.
+const parseGraphDateTime = (dateTime, timeZone) => {
+  if (!dateTime) {
+    return undefined;
+  }
+
+  const normalizedDateTime = !hasOffsetOrZulu(dateTime) && timeZone === "UTC" ? `${dateTime}Z` : dateTime;
+  const parsedDate = new Date(normalizedDateTime);
+
+  return Number.isNaN(parsedDate.getTime()) ? undefined : parsedDate;
+};
+
 const parseDateBounds = (event) => {
   let startDate;
   let endDate;
 
   try {
-    const startStr = event.start.dateTime || event.start.date;
-    const endStr = event.end.dateTime || event.end.date;
-    startDate = new Date(event.start.dateTime);
-    endDate = new Date(event.end.dateTime);
+    startDate = parseGraphDateTime(event.start?.dateTime, event.start?.timeZone);
+    endDate = parseGraphDateTime(event.end?.dateTime, event.end?.timeZone);
   } catch (ex) {}
 
   return { startDate, endDate };

@@ -52,12 +52,12 @@ return data.value
 
     // // If the iCalUID has a "--" in it, try to extract an activity ID.
     // // This is how the calendar plugin will create events for scheduled activities.
-    const activityId = event.iCalUID?.includes("--") ? event.iCalUID.split("--")[0] : undefined;
+    const activityId = event.iCalUId?.includes("--") ? event.iCalUId.split("--")[0] : undefined;
 
     const kizen_event = {
       id: event.id,
       activity_id: activityId,
-      calendar_id: calendar?.id,
+      calendar_id: calendar_id,
       title: event.subject,
       description: event.bodyPreview,
       start_time: this.formatDateForResponse(startDate),

@@ -39,11 +39,13 @@ if (errors) {
 
 return data.value
   .filter((event) => {
-    return !["free", "workingElsewhere"].includes(event.showAs);
+    const isBusy = !["free", "workingElsewhere"].includes(event.showAs);
+    this.console.log("Filtering event:", event.id, "isBusy:", isBusy);
+    return isBusy;
   })
   .map((event) => {
     const { startDate, endDate } = parseDateBounds(event);
-
+    this.console.log("Parsed event dates:", event.id, "startDate:", startDate, "endDate:", endDate);
     if (!startDate || !endDate) {
       return null;
     }

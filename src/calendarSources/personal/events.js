@@ -55,6 +55,9 @@ return data.value
     // // This is how the calendar plugin will create events for scheduled activities.
     const activityId = event.iCalUId?.includes("--") ? event.iCalUId.split("--")[0] : undefined;
 
+    // Outlook has a webLink property that provides a direct link to the event but it treats it as a new event
+    const url = `https://outlook.live.com/calendar/0/item/${event.id}`;
+
     const kizen_event = {
       id: event.id,
       activity_id: activityId,
@@ -66,7 +69,7 @@ return data.value
       all_day: event.isAllDay || false,
       // The showAs property indicates the availability of the event. (free, tentative, busy, oof, workingElsewhere, unknown)
       busy: event.showAs !== "free" && event.showAs !== "workingElsewhere",
-      url: event.webLink,
+      url: url,
       attendees:
         event.attendees
           ?.filter((attendee) => attendee.status === "accepted" || attendee.status === "organizer")

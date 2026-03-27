@@ -52,7 +52,7 @@ return data.value
     // // This is how the calendar plugin will create events for scheduled activities.
     const activityId = event.iCalUID?.includes("--") ? event.iCalUID.split("--")[0] : undefined;
 
-    return {
+    const kizen_event = {
       id: event.id,
       activity_id: activityId,
       calendar_id: calendar?.id,
@@ -69,5 +69,7 @@ return data.value
           ?.filter((attendee) => attendee.status === "accepted" || attendee.status === "organizer")
           .map((attendee) => attendee.emailAddress) ?? [],
     };
+    this.console.log("kizen_event", kizen_event);
+    return kizen_event;
   })
   .filter((event) => event !== null);

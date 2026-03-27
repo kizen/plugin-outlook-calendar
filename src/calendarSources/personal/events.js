@@ -1,9 +1,7 @@
-this.preserve = true;
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
-this.console.log("Fetching events for calendar:", calendar_id, "from", range_start, "to", range_end);
 // Outlook timed events provide dateTime + timeZone.
-// If dateTime has no explicit offset and the timezone is UTC, append Z before parsing.
+// If dateTime has no explicit offset (+/- HH:MM) and the timezone is UTC, append Z before parsing.
 const hasOffsetOrZulu = (value = "") => /[zZ]$|[+-]\d{2}:\d{2}$/.test(value);
 
 const parseGraphDateTime = (dateTime, timeZone) => {
@@ -37,20 +35,18 @@ const [data, errors] = await this.getWithErrors(
     )}&endDateTime=${encodeURIComponent(range_end)}`,
   ),
 );
-this.console.log("Fetched events:", data.value);
+
 if (errors) {
   return [];
 }
 
 return data.value
   .filter((event) => {
-    const isBusy = !["free", "workingElsewhere"].includes(event.showAs);
-    this.console.log("Filtering event:", event.id, "isBusy:", isBusy);
-    return isBusy;
+    return !["free", "workingElsewhere"].includes(event.showAs);
   })
   .map((event) => {
     const { startDate, endDate } = parseDateBounds(event);
-    this.console.log("Parsed event dates:", event.id, "startDate:", startDate, "endDate:", endDate);
+
     if (!startDate || !endDate) {
       return null;
     }
@@ -68,7 +64,7 @@ return data.value
       start_time: this.formatDateForResponse(startDate),
       end_time: this.formatDateForResponse(endDate),
       all_day: event.isAllDay || false,
-      // Transparency is how google indicates free/busy
+      // The showAs property indicates the availability of the event. (free, tentative, busy, oof, workingElsewhere, unknown)
       busy: event.showAs !== "free" && event.showAs !== "workingElsewhere",
       url: event.webLink,
       attendees:
@@ -76,7 +72,6 @@ return data.value
           ?.filter((attendee) => attendee.status === "accepted" || attendee.status === "organizer")
           .map((attendee) => attendee.emailAddress) ?? [],
     };
-    this.console.log("kizen_event", kizen_event);
     return kizen_event;
   })
   .filter((event) => event !== null);

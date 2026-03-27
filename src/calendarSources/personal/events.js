@@ -50,7 +50,7 @@ return data.value
 
     // // If the iCalUID has a "--" in it, try to extract an activity ID.
     // // This is how the calendar plugin will create events for scheduled activities.
-    // const activityId = event.iCalUID?.includes("--") ? event.iCalUID.split("--")[0] : undefined;
+    const activityId = event.iCalUID?.includes("--") ? event.iCalUID.split("--")[0] : undefined;
 
     return {
       id: event.id,

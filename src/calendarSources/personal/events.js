@@ -39,7 +39,7 @@ if (errors) {
 
 return data.value
   .filter((event) => {
-    return ["free", "workingElsewhere"].includes(event.showAs);
+    return !["free", "workingElsewhere"].includes(event.showAs);
   })
   .map((event) => {
     const { startDate, endDate } = parseDateBounds(event);

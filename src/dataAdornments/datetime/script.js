@@ -109,23 +109,23 @@ if (this.args.activityId) {
   record = (await this.get(getRecordUrl(this.args.objectId, this.args.entityId, "name", this.args.fieldId))) ?? {};
 }
 
-// ICS generation logic
-const formatDateForICS = (date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+// // ICS generation logic
+// const formatDateForICS = (date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
-const buildICSContent = (summary, description, start, end) => {
-  return `BEGIN:VCALENDAR
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-SUMMARY:${summary}
-DESCRIPTION:${description}
-DTSTART:${formatDateForICS(start)}
-DTEND:${formatDateForICS(end)}
-DTSTAMP:${formatDateForICS(new Date())}
-UID:${Date.now()}-${Math.random().toString(36).slice(2)}@kizen.com
-END:VEVENT
-END:VCALENDAR`;
-};
+// const buildICSContent = (summary, description, start, end) => {
+//   return `BEGIN:VCALENDAR
+// VERSION:2.0
+// CALSCALE:GREGORIAN
+// BEGIN:VEVENT
+// SUMMARY:${summary}
+// DESCRIPTION:${description}
+// DTSTART:${formatDateForICS(start)}
+// DTEND:${formatDateForICS(end)}
+// DTSTAMP:${formatDateForICS(new Date())}
+// UID:${Date.now()}-${Math.random().toString(36).slice(2)}@kizen.com
+// END:VEVENT
+// END:VCALENDAR`;
+// };
 
 const isAllDayEvent = this.args.fieldType === "date";
 const durationInMinutes = 30;
@@ -134,9 +134,16 @@ const { startDate, endDate } = toTimeRange(this.args.value, isAllDayEvent, durat
 const eventName = buildEventName(record, object, this.args.fieldId);
 const eventDetails = buildEventDetails(record, object, this.args.activityId);
 
-const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate);
+this.openWindow(`https://outlook.live.com/calendar/0/deeplink/compose?
+  subject=${encodeURIComponent(eventName)}
+  &body=${encodeURIComponent(eventDetails)}
+  &startdt=${encodeURIComponent(startDate.toISOString())}
+  &enddt=${encodeURIComponent(endDate.toISOString())}
+  &allday=${isAllDayEvent}`);
 
-const base64ICS = utf8ToBase64(icsContent);
-const dataUrl = `data:text/calendar;base64,${base64ICS}`;
+// const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate);
 
-this.openWindow(dataUrl);
+// const base64ICS = utf8ToBase64(icsContent);
+// const dataUrl = `data:text/calendar;base64,${base64ICS}`;
+
+// this.openWindow(dataUrl);

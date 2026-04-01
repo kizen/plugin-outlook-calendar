@@ -42,7 +42,7 @@ if (errors) {
 
 return data.value
   .filter((event) => {
-    return !["free", "workingElsewhere"].includes(event.showAs);
+    return !["workingElsewhere"].includes(event.showAs);
   })
   .map((event) => {
     const { startDate, endDate } = parseDateBounds(event);
@@ -68,12 +68,15 @@ return data.value
       end_time: this.formatDateForResponse(endDate),
       all_day: event.isAllDay || false,
       // The showAs property indicates the availability of the event. (free, tentative, busy, oof, workingElsewhere, unknown)
-      busy: event.showAs !== "free" && event.showAs !== "workingElsewhere",
+      busy: event.showAs !== "free",
       url: url,
       attendees:
         event.attendees
-          ?.filter((attendee) => attendee.status === "accepted" || attendee.status === "organizer")
-          .map((attendee) => attendee.emailAddress) ?? [],
+          ?.filter(
+            (attendee) => attendee?.status?.response === "accepted" || attendee?.status?.response === "organizer",
+          )
+          .map((attendee) => attendee?.emailAddress?.address)
+          .filter((email) => !!email) ?? [],
     };
     return kizen_event;
   })

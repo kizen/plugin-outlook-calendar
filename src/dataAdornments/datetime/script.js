@@ -74,7 +74,7 @@ const buildEventDetails = (record, object, activityId) => {
 const getRecordUrl = (objectId = "", recordId = "", fieldNames = "", fieldIds = "") =>
   `/records/${objectId}/${recordId}?field_names=${fieldNames}&field_ids=${fieldIds}`;
 const getObjectUrl = (objectId = "") => `/custom-objects/${objectId}`;
-const getActivtyUrl = (activityId = "") => `/activities/${activityId}`;
+const getActivityUrl = (activityId = "") => `/activities/${activityId}`;
 const getScheduledActivityUrl = (activityId) => `/activities/scheduled-activity/${activityId}`;
 
 // Fetch object and record
@@ -85,7 +85,7 @@ let object = this.args.objectId ? await this.get(getObjectUrl(this.args.objectId
 if (this.args.activityId) {
   const scheduledActivity = await this.get(getScheduledActivityUrl(this.args.activityId));
   if (scheduledActivity) {
-    activity = (await this.get(getActivtyUrl(scheduledActivity.activity_object.id))) ?? { name: "" };
+    activity = (await this.get(getActivityUrl(scheduledActivity.activity_object.id))) ?? { name: "" };
     object = { ...object, object_name: activity?.name || "" };
   }
 

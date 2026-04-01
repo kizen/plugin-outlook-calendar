@@ -1,3 +1,5 @@
+this.preserve = true;
+
 function utf8ToBase64(str) {
   return btoa(
     Array.from(new TextEncoder().encode(str))
@@ -133,6 +135,14 @@ const durationInMinutes = 30;
 const { startDate, endDate } = toTimeRange(this.args.value, isAllDayEvent, durationInMinutes);
 const eventName = buildEventName(record, object, this.args.fieldId);
 const eventDetails = buildEventDetails(record, object, this.args.activityId);
+
+this.console.log("Opening Outlook calendar with event:", {
+  subject: eventName,
+  body: eventDetails,
+  startdt: startDate.toISOString(),
+  enddt: endDate.toISOString(),
+  allday: isAllDayEvent,
+});
 
 this.openWindow(`https://outlook.live.com/calendar/0/deeplink/compose?
   subject=${encodeURIComponent(eventName)}

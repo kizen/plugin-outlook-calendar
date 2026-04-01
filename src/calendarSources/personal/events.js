@@ -28,7 +28,9 @@ const parseDateBounds = (event) => {
       startDate = parseGraphDateTime(event.start?.dateTime, event.start?.timeZone);
       endDate = parseGraphDateTime(event.end?.dateTime, event.end?.timeZone);
     }
-  } catch (ex) {}
+  } catch (ex) {
+    this.showToast("Error parsing event dates", { variant: "alert" });
+  }
 
   return { startDate, endDate };
 };

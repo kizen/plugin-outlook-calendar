@@ -40,6 +40,8 @@ if (errors) {
   return [];
 }
 
+this.console.log("Outlook events:", data.value);
+
 return data.value
   .filter((event) => {
     return !["workingElsewhere"].includes(event.showAs);
@@ -56,7 +58,6 @@ return data.value
     const activityId = event.iCalUId?.includes("--") ? event.iCalUId.split("--")[0] : undefined;
 
     // Outlook has a webLink property that provides a direct link to the event but it treats it as a new event
-    const url = `https://outlook.live.com/calendar/0/item/${event.id}`;
 
     const kizen_event = {
       id: event.id,
@@ -69,7 +70,7 @@ return data.value
       all_day: event.isAllDay || false,
       // The showAs property indicates the availability of the event. (free, tentative, busy, oof, workingElsewhere, unknown)
       busy: event.showAs !== "free",
-      url: url,
+      url: event.webLink,
       attendees:
         event.attendees
           ?.filter(
@@ -78,6 +79,7 @@ return data.value
           .map((attendee) => attendee?.emailAddress?.address)
           .filter((email) => !!email) ?? [],
     };
+    this.console.log("kizen_event:", kizen_event);
     return kizen_event;
   })
   .filter((event) => event !== null);

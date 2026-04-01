@@ -112,15 +112,25 @@ if (this.args.activityId) {
 // ICS generation logic
 const formatDateForICS = (date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
-const buildICSContent = (summary, description, start, end) => {
+const formatDateOnly = (date) => {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}${m}${d}`;
+};
+
+const buildICSContent = (summary, description, start, end, isAllDay = false) => {
+  const dtStart = isAllDay ? `DTSTART;VALUE=DATE:${formatDateOnly(start)}` : `DTSTART:${formatDateForICS(start)}`;
+  const dtEnd = isAllDay ? `DTEND;VALUE=DATE:${formatDateOnly(end)}` : `DTEND:${formatDateForICS(end)}`;
+
   return `BEGIN:VCALENDAR
 VERSION:2.0
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
 SUMMARY:${summary}
 DESCRIPTION:${description}
-DTSTART:${formatDateForICS(start)}
-DTEND:${formatDateForICS(end)}
+${dtStart}
+${dtEnd}
 DTSTAMP:${formatDateForICS(new Date())}
 UID:${Date.now()}-${Math.random().toString(36).slice(2)}@kizen.com
 END:VEVENT
@@ -134,7 +144,7 @@ const { startDate, endDate } = toTimeRange(this.args.value, isAllDayEvent, durat
 const eventName = buildEventName(record, object, this.args.fieldId);
 const eventDetails = buildEventDetails(record, object, this.args.activityId);
 
-const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate);
+const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate, isAllDayEvent);
 
 const base64ICS = utf8ToBase64(icsContent);
 const dataUrl = `data:text/calendar;base64,${base64ICS}`;

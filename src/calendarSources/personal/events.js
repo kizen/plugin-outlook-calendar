@@ -1,3 +1,4 @@
+this.preserve = true;
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
 // Outlook timed events provide dateTime + timeZone.

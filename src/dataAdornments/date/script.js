@@ -119,6 +119,11 @@ const formatDateOnly = (date) => {
   return `${y}${m}${d}`;
 };
 
+const escapeICSText = (value) => {
+  const str = value == null ? "" : String(value);
+  return str.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+};
+
 const buildICSContent = (summary, description, start, end, isAllDay = false) => {
   const dtStart = isAllDay ? `DTSTART;VALUE=DATE:${formatDateOnly(start)}` : `DTSTART:${formatDateForICS(start)}`;
   const dtEnd = isAllDay ? `DTEND;VALUE=DATE:${formatDateOnly(end)}` : `DTEND:${formatDateForICS(end)}`;
@@ -127,8 +132,8 @@ const buildICSContent = (summary, description, start, end, isAllDay = false) => 
 VERSION:2.0
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
-SUMMARY:${summary}
-DESCRIPTION:${description}
+SUMMARY:${escapeICSText(summary)}
+DESCRIPTION:${escapeICSText(description)}
 ${dtStart}
 ${dtEnd}
 DTSTAMP:${formatDateForICS(new Date())}

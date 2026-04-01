@@ -1,5 +1,3 @@
-this.preserve = true;
-
 const toTimeRange = (input, isAllDay = false, durationInMinutes = 30) => {
   const parseDateInput = () => {
     if (typeof input === "string") return new Date(input);

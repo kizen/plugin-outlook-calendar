@@ -1,4 +1,3 @@
-this.preserve = true;
 const { range_start, range_end, calendar_id } = this.args.calendar;
 
 // Outlook timed events provide dateTime + timeZone.
@@ -47,8 +46,6 @@ if (errors) {
   return [];
 }
 
-this.console.log("Outlook events:", data.value);
-
 return data.value
   .filter((event) => {
     return !["workingElsewhere"].includes(event.showAs);
@@ -86,7 +83,6 @@ return data.value
           .map((attendee) => attendee?.emailAddress?.address)
           .filter((email) => !!email) ?? [],
     };
-    this.console.log("kizen_event:", kizen_event);
     return kizen_event;
   })
   .filter((event) => event !== null);

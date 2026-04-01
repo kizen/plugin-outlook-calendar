@@ -144,12 +144,7 @@ this.console.log("Opening Outlook calendar with event:", {
   allday: isAllDayEvent,
 });
 
-this.openWindow(`https://outlook.live.com/calendar/0/deeplink/compose?
-  subject=${encodeURIComponent(eventName)}
-  &body=${encodeURIComponent(eventDetails)}
-  &startdt=${encodeURIComponent(startDate.toISOString())}
-  &enddt=${encodeURIComponent(endDate.toISOString())}
-  &allday=${isAllDayEvent}`);
+this.openWindow(`https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(eventName)}&body=${encodeURIComponent(eventDetails)}&startdt=${encodeURIComponent(startDate.toISOString())}&enddt=${encodeURIComponent(endDate.toISOString())}&allday=${isAllDayEvent}`);
 
 // const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate);
 

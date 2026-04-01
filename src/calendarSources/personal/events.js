@@ -21,8 +21,14 @@ const parseDateBounds = (event) => {
   let endDate;
 
   try {
-    startDate = parseGraphDateTime(event.start?.dateTime, event.start?.timeZone);
-    endDate = parseGraphDateTime(event.end?.dateTime, event.end?.timeZone);
+    if (event.isAllDay) {
+      // Parse as local midnight (no Z) to avoid UTC shifting the date
+      startDate = new Date(`${event.start.dateTime.split("T")[0]}T00:00:00`);
+      endDate = new Date(`${event.end.dateTime.split("T")[0]}T00:00:00`);
+    } else {
+      startDate = parseGraphDateTime(event.start?.dateTime, event.start?.timeZone);
+      endDate = parseGraphDateTime(event.end?.dateTime, event.end?.timeZone);
+    }
   } catch (ex) {}
 
   return { startDate, endDate };

@@ -1,11 +1,3 @@
-function utf8ToBase64(str) {
-  return btoa(
-    Array.from(new TextEncoder().encode(str))
-      .map((b) => String.fromCharCode(b))
-      .join(""),
-  );
-}
-
 const toTimeRange = (input, isAllDay = false, durationInMinutes = 30) => {
   const parseDateInput = () => {
     if (typeof input === "string") return new Date(input);
@@ -109,39 +101,6 @@ if (this.args.activityId) {
   record = (await this.get(getRecordUrl(this.args.objectId, this.args.entityId, "name", this.args.fieldId))) ?? {};
 }
 
-// ICS generation logic
-const formatDateForICS = (date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-
-const formatDateOnly = (date) => {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}${m}${d}`;
-};
-
-const escapeICSText = (value) => {
-  const str = value == null ? "" : String(value);
-  return str.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
-};
-
-const buildICSContent = (summary, description, start, end, isAllDay = false) => {
-  const dtStart = isAllDay ? `DTSTART;VALUE=DATE:${formatDateOnly(start)}` : `DTSTART:${formatDateForICS(start)}`;
-  const dtEnd = isAllDay ? `DTEND;VALUE=DATE:${formatDateOnly(end)}` : `DTEND:${formatDateForICS(end)}`;
-
-  return `BEGIN:VCALENDAR
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-SUMMARY:${escapeICSText(summary)}
-DESCRIPTION:${escapeICSText(description)}
-${dtStart}
-${dtEnd}
-DTSTAMP:${formatDateForICS(new Date())}
-UID:${Date.now()}-${Math.random().toString(36).slice(2)}@kizen.com
-END:VEVENT
-END:VCALENDAR`;
-};
-
 const isAllDayEvent = this.args.fieldType === "date";
 const durationInMinutes = 30;
 
@@ -149,9 +108,11 @@ const { startDate, endDate } = toTimeRange(this.args.value, isAllDayEvent, durat
 const eventName = buildEventName(record, object, this.args.fieldId);
 const eventDetails = buildEventDetails(record, object, this.args.activityId);
 
-const icsContent = buildICSContent(eventName, eventDetails, startDate, endDate, isAllDayEvent);
-
-const base64ICS = utf8ToBase64(icsContent);
-const dataUrl = `data:text/calendar;base64,${base64ICS}`;
-
-this.openWindow(dataUrl);
+const params = new URLSearchParams({
+  subject: eventName,
+  body: eventDetails,
+  startdt: startDate.toISOString(),
+  enddt: endDate.toISOString(),
+  allday: isAllDayEvent,
+});
+this.openWindow(`https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`);

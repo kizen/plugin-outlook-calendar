@@ -2,7 +2,7 @@ function utf8ToBase64(str) {
   return btoa(
     Array.from(new TextEncoder().encode(str))
       .map((b) => String.fromCharCode(b))
-      .join("")
+      .join(""),
   );
 }
 
@@ -100,7 +100,7 @@ if (this.args.activityId) {
     default:
       record =
         this.args.objectId && this.args.entityId
-          ? (await this.get(getRecordUrl(this.args.objectId, this.args.entityId, "name", this.args.fieldId))) ?? {}
+          ? ((await this.get(getRecordUrl(this.args.objectId, this.args.entityId, "name", this.args.fieldId))) ?? {})
           : {};
       break;
   }

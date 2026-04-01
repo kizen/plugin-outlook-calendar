@@ -7,8 +7,6 @@ if (errors) {
   return [];
 }
 
-this.console.log("Fetched calendars:", data.value);
-
 return data.value
   .map((calendar) => ({
     id: calendar.id,

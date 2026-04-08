@@ -60,10 +60,7 @@ return data.value
     }
 
     // // If the iCalUID has a "--" in it, try to extract an activity ID.
-    // // This is how the calendar plugin will create events for scheduled activities.
     const activityId = event.iCalUId?.includes("--") ? event.iCalUId.split("--")[0] : undefined;
-
-    // Outlook has a webLink property that provides a direct link to the event but it treats it as a new event
 
     const kizen_event = {
       id: event.id,

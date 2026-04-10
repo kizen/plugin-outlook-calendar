@@ -1,0 +1,44 @@
+{
+  "services": [
+    {
+      "api_name": "personal",
+      "required": true,
+      "prerequisite": true
+    }
+  ],
+  "fields": [
+    {
+      "type": "boolean",
+      "label": "Enable External Calendars",
+      "key": "enableExternalCalendars",
+      "default": true
+    },
+    {
+      "type": "boolean",
+      "label": "Enable All Calendars",
+      "key": "enableAllCalendars",
+      "default": true,
+      "when": "Boolean({{enableExternalCalendars}})"
+    },
+    {
+      "type": "description",
+      "key": "allCalendarsDescription",
+      "content": "All calendars you are authorized to access will be available to you. Other users will not have access to your calendars.",
+      "when": "Boolean({{enableAllCalendars}}) && Boolean({{enableExternalCalendars}})"
+    },
+    {
+      "type": "description",
+      "key": "selectCalendarsDescription",
+      "content": "Select specific calendars to enable in the plugin. Other users will not have access to these calendars.",
+      "when": "!Boolean({{enableAllCalendars}}) && Boolean({{enableExternalCalendars}})"
+    },
+    {
+      "type": "select",
+      "label": "Enabled Calendars",
+      "key": "enabledUserCalendars",
+      "required": false,
+      "allow_multiple": true,
+      "when": "Boolean({{enableExternalCalendars}}) && !Boolean({{enableAllCalendars}})"
+    }
+  ]
+}

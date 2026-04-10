@@ -2,5 +2,6 @@
   "icon": "calendar",
   "color": "green",
   "tooltip": "Create Outlook Event",
-  "field_type": "date"
+  "field_type": "date",
+  "when": "Boolean({{config.enableAdornments}})"
 }

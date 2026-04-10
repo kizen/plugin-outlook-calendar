@@ -1,0 +1,22 @@
+{
+  "services": [],
+  "fields": [
+    {
+      "type": "description",
+      "content": "Disabling data adornments or external calendars will disable them for all users of the business.",
+      "key": "businessConfigDescription"
+    },
+    {
+      "type": "boolean",
+      "label": "Enable Data Adornment",
+      "key": "enableAdornments",
+      "default": true
+    },
+    {
+      "type": "boolean",
+      "label": "Enable External Calendars",
+      "key": "enableExternalCalendars",
+      "default": true
+    }
+  ]
+}

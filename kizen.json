@@ -1,6 +1,6 @@
 {
-  "name": "Microsoft Outlook Calendar",
-  "version": "1.0.6",
+  "name": "Microsoft Outlook Calendar Plugin",
+  "version": "2.0.0",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
   "release_branches": ["main"],
@@ -9,5 +9,38 @@
   "engine": "1.0.0",
   "release_notes_directory": "releaseNotes/",
   "config_template": {},
-  "base_config": {}
+  "developer_business_id": {
+    "integration": "725f64e5-4124-46cc-92c4-d16049add76e",
+    "staging": "725f64e5-4124-46cc-92c4-d16049add76e",
+    "go": "ddbdd2ce-cfe9-4bfb-aae6-33aefe24445f",
+    "fmo": "be06da94-20a4-42c9-8b24-d4eafb4cfa8d"
+  },
+  "base_config": {},
+  "services": [
+    {
+      "service_name": "personal",
+      "display_name": "Outlook Calendar",
+      "auth_type": "oauth",
+      "auth_level": "user",
+      "required_entitlement": null,
+      "base_service_url": "https://graph.microsoft.com",
+      "auth_credentials": {
+        "client_id": "693af3db-dd65-4049-aa3b-298412019e4a",
+        "client_secret": "4xQ8Q~WK8DUDPg1e6v3QS62S8NNj4xXziuRzjbU4",
+        "scopes": "openid profile email offline_access https://graph.microsoft.com/Calendars.Read",
+        "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+        "token_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "content_type": "application/x-www-form-urlencoded",
+        "token_field_name": "access_token",
+        "default_token_expiry": 3600,
+        "payload": { "grant_type": "authorization_code" },
+        "authorize_params": {
+          "access_type": "offline",
+          "prompt": "consent"
+        },
+        "success_redirect_path": "/oauth/success",
+        "error_redirect_path": "/oauth/error"
+      }
+    }
+  ]
 }

@@ -18,6 +18,9 @@ return data.value
     default: calendar.isDefaultCalendar || false,
   }))
   .filter((calendar) => {
+    this.console.log(
+      `Evaluating calendar: ${calendar.name} (ID: ${calendar.id}) included: ${calendarFilterList.includes(calendar.id)} allCalendarsEnabled: ${allCalendarsEnabled}`,
+    );
     if (allCalendarsEnabled) {
       return true;
     }

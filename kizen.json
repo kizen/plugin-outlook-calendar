@@ -25,8 +25,8 @@
       "required_entitlement": null,
       "base_service_url": "https://graph.microsoft.com",
       "auth_credentials": {
-        "client_id": "693af3db-dd65-4049-aa3b-298412019e4a",
-        "client_secret": "4xQ8Q~WK8DUDPg1e6v3QS62S8NNj4xXziuRzjbU4",
+        "client_id": "21b746fe-4a48-45f0-98b0-cc7c602b9e41",
+        "client_secret": "jaz8Q~cXnCNR_pPrEul5mO8CYeP2p.dYrUK2Qba4",
         "scopes": "openid profile email offline_access https://graph.microsoft.com/Calendars.Read",
         "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
         "token_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",

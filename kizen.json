@@ -1,6 +1,6 @@
 {
-  "name": "Microsoft Outlook Calendar Plugin",
-  "version": "2.0.0",
+  "name": "Microsoft Outlook Calendar",
+  "version": "2.0.1",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
   "release_branches": ["main"],

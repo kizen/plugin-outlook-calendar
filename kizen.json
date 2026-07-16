@@ -26,7 +26,10 @@
       "base_service_url": "https://graph.microsoft.com",
       "auth_credentials": {
         "client_id": "21b746fe-4a48-45f0-98b0-cc7c602b9e41",
-        "client_secret": "jaz8Q~cXnCNR_pPrEul5mO8CYeP2p.dYrUK2Qba4",
+        "client_secret": {
+          "encrypted": true,
+          "value": "eyJ2IjoxLCJhbGciOiJSU0EtT0FFUC0yNTYrQTI1NkdDTSIsImsiOiJzUDVNeEM4SlFDRHVyTHZiRWFZOEtGZ21QUjhaUXdwdk1sODliWWxkNzk0bTdSVi9NZjFHM0t0dVpZaS91aHd5T0NmRTJVSWVDZHJ0WU03WGR6cTZ1K2lhRUZBRmQzcU84TEN6M2dCeGYzNCt3Wk9iOHZDdEswYmVPYkxTQk9DbUFBN0pKaUFZU25jK3NUb0hCKzR6Mko2MXNXU3RDc3BmWThqclpCQzQ0ai9adlNiRW5zM3pWSms5eWk4VkwxeGY5Y1c0WnlycXpVOXA4V3RUWWFCQVY0aXE5dEdWbE5VTUlCZzNBL3d3MWhZYjVYcGdqakV0bnNUaXM0aUVEdGd5UmdzdmplT3l6bjBxZ0V0bzdJa3JHc1dSbEJWNEY4UmpsY0FJVDlwVnZ2Y0IwWkhJaFJYb2V1MVpsY05vZkZFR2tmNWhiOS81THVNY3l6cmZtZ0J2cDZyR1VlRzNMZlpIa24yY2Z5SERTR0ZaWVJPNk5XME1jckF1RlRKSG93OFg2M3Z5VkdFY3hyVjQ3dVVnSnBIOUdiS3BkUG9rVENCdnVTRjFYbzRrL3ozbGg0eUZ6bnpPcDZzRU9EdU9lVVFKald5MzlmYzR2UlNPeDFkUTBVOWtrOTEvcWR6a2lnZ1RiZ3A5ZVkyMlVMUlJxQ0FjZ2xYSThxVjZ2UFdmUzhlOSIsIml2IjoiVk9Fb2R0RWpJWG1xTzExOCIsInRhZyI6IjdHM1FUVWZ6MStGTXp3bHJhNGtiRWc9PSIsImN0IjoiZmJhY0VOTUJ5ek00aG5hVDBFWkVkMStHRFZUV3dwNTEyOGdJM0RlYWNodnNyZFVxMVdjdWNBPT0ifQ=="
+        },
         "scopes": "openid profile email offline_access https://graph.microsoft.com/Calendars.Read",
         "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
         "token_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",

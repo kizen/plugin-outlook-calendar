@@ -1,6 +1,6 @@
 {
   "name": "Microsoft Outlook Calendar",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "api_name": "outlook_calendar",
   "description": "Create events in Microsoft Outlook Calendar for Date and Date Time fields.",
   "release_branches": ["main"],
@@ -26,7 +26,10 @@
       "base_service_url": "https://graph.microsoft.com",
       "auth_credentials": {
         "client_id": "21b746fe-4a48-45f0-98b0-cc7c602b9e41",
-        "client_secret": "jaz8Q~cXnCNR_pPrEul5mO8CYeP2p.dYrUK2Qba4",
+        "client_secret": {
+          "encrypted": true,
+          "value": "eyJ2IjoxLCJhbGciOiJSU0EtT0FFUC0yNTYrQTI1NkdDTSIsImsiOiJxamxRWEtqbmVSc1RuYm5VNmdmeEZFQ1gvTGc4Z2JrVFpOS0RVWkY0QkMwVjVCa1JIN21WN0RYdjNlNjAzVDFsdHNZMzZ0QnQvWWFqOUxwYnp0MFI5OFZxSjgzL1ViL0JnMjVJbXNGUXZFelV0OEZua1p3anZFNmFkZ1VYdGpGYUw0c2ozWUpPSmRPVWp2UGtIQTBNK1FOT0F3cCtJMW5yNVZpSXdtdUdoRWR6TVFjNHBpV1ViNS9UeSt1WFBGbnNET1Jka2MwTlhVTFpPYi8yK29TUWZ4UWdYTCtTYTRTNjZ5Q0ZNZFlIR3hVZjZRcVJZMEoxTDZRUnV2WlZjY0dnVk01K1k1K04vN0xMRUNnMUR3eWlON2hwYzNNUVFFMDlkZVh2bUFVb3JVdDUvWmo5NDhPeW9IQUVmcnZMMnFqNlVPWUc4a2V0cmYyMVJiTHJYc0FiNHV1d2VoVnJzL2I4RTd5L3QrT1RBaUxjcWlrUlNsWnJxZDRxMlVvNkJpMXhYa0lhWE9lYkdGMmliTkt2Rm91SjJBWnRUTmg0dkx4VmVzR2VRMnZvTWhINDAxUnBxOHVrZ1JadHA0dzJzN2ZDN2paNklQQmpTcnBwb2JJRW52UllBNWxwUDdVLzZ0M09BaUViOVM5TEhod1pQR1BxT3lTdFM4TUQzaHJ0WStSUCIsIml2IjoiY1owWWRLQnE5cWx3OXM3LyIsInRhZyI6IlM1dUVydXZKSExDZjJmKzRETEVGSnc9PSIsImN0IjoiZlRlK1dUcW5RV2Q5WnVtYUpML0ErdWlvVXliV2tZTnRsQ050Mlh2UU5ua0pEbm9zR3dNZ3dnPT0ifQ=="
+        },
         "scopes": "openid profile email offline_access https://graph.microsoft.com/Calendars.Read",
         "authorize_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
         "token_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
